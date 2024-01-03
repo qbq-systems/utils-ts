@@ -1,6 +1,6 @@
 {
-  "name": "ts-empty",
-  "version": "24.1.1",
+  "name": "@qbq.systems/utils",
+  "version": "24.1.3",
   "description": "",
   "scripts": {
     "build:esbuild:es2021": "esbuild `find src \\( -name '*.ts' ! -name '*.test.ts' \\)` --sourcemap --target=es2021 --minify --outdir=out/esbuild_es2021/",
