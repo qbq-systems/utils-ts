@@ -10,5 +10,8 @@ build_tsc_default_es2021: clean
 clean:
 	pnpm clean
 
+publish_public:
+	pnpm publish --access public
+
 test_ava_all:
 	pnpm test:ava:all
