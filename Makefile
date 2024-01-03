@@ -1,3 +1,5 @@
+VERSION:=$(shell date +"%Y.%-m.%-d-%-H.%-M")
+
 build_esbuild_es2021: clean
 	pnpm build:esbuild:es2021
 
@@ -15,3 +17,7 @@ publish_public:
 
 test_ava_all:
 	pnpm test:ava:all
+
+update_version:
+	@jq ".version = \"$(VERSION)\"" package.json > package.json.new
+	@mv package.json.new package.json
