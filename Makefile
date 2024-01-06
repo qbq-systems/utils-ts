@@ -2,14 +2,8 @@ VERSION:=$(shell date +"%y.%-m.%-d-%-H.%-M")
 
 .SILENT:
 
-build_esbuild_es2021: clean
-	pnpm build:esbuild:es2021
-
-build_esbuild_es2021_bundle: clean
-	pnpm build:esbuild:es2021:bundle
-
-build_tsc_default_es2021: clean
-	pnpm build:tsc:default:es2021
+build: clean
+	pnpm build
 
 clean:
 	pnpm clean

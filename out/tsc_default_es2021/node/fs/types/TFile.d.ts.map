@@ -1,0 +1,1 @@
+{"version":3,"file":"TFile.d.ts","sourceRoot":"","sources":["../../../../../src/node/fs/types/TFile.ts"],"names":[],"mappings":";AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,eAAe,CAAC;AAG5C,MAAM,MAAM,KAAK,GAAG;IAChB,IAAI,EAAE,MAAM,GAAG,MAAM,GAAG,OAAO,CAAC;IAChC,IAAI,EAAE,MAAM,CAAC;IACb,IAAI,EAAE,MAAM,CAAC;IACb,MAAM,EAAE,WAAW,CAAC;CACvB,CAAA"}
