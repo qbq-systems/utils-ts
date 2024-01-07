@@ -1,15 +1,13 @@
 {
   "name": "@qbq.systems/utils",
-  "version": "24.1.6-8.13",
+  "version": "24.1.7-22.0",
   "description": "",
   "license": "MIT",
   "repository": "qbq-systems/utils-ts",
   "main": "out/tsc_default_es2021/index.js",
   "types": "out/tsc_default_es2021/index.d.ts",
   "scripts": {
-    "build:esbuild:es2021": "esbuild `find src \\( -name '*.ts' ! -name '*.test.ts' \\)` --sourcemap --target=es2021 --minify --outdir=out/esbuild_es2021/",
-    "build:esbuild:es2021:bundle": "esbuild src/index.ts --sourcemap --target=es2021 --bundle --minify --outfile=out/esbuild_es2021_bundle/app.min.js",
-    "build:tsc:default:es2021": "tsc --project tsconfig.default.es2021.json",
+    "build": "tsc --project tsconfig.default.es2021.json",
     "clean": "rm -rf out/",
     "test:ava:all": "ava --serial --fail-fast"
   },
