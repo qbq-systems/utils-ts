@@ -1,3 +1,42 @@
+export const currentDate = (): string => {
+    const date = new Date()
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+}
+
+export const currentDateTime = (): string => {
+    return `${currentDate()} ${currentTime()}`
+}
+
+export const currentTime = (): string => {
+    const date = new Date()
+    return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`
+}
+
+/**
+ * Calculation of the number of days between two dates in the format `YYYYY-MM-DD`
+ *
+ * @param from
+ * @param to
+ */
+export const daysBetweenTwoDates = (from: string, to: string): number => {
+    const fromList = from.split('-')
+    const toList = to.split('-')
+
+    return Math.round(
+        Math.abs(
+            (new Date(
+                parseInt(fromList[0], 10),
+                parseInt(fromList[1], 10),
+                parseInt(fromList[2], 10)
+            ).getTime() - new Date(
+                parseInt(toList[0], 10),
+                parseInt(toList[1], 10),
+                parseInt(toList[2], 10)
+            ).getTime()) / 86400000
+        )
+    )
+}
+
 /**
  * Convert `Nov 14 12:01:22 2023 GMT` to `2023-11-14`
  *
