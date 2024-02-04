@@ -4,6 +4,8 @@ export default class Logger {
 
     private prefix: string[] = []
 
+    private transport: (...args: any[]) => void = console.log
+
     private useUTC: boolean = true
 
     addPrefix(p: string) {
@@ -16,7 +18,7 @@ export default class Logger {
     }
 
     private process(type: string, m: any[]) {
-        console.log(
+        this.transport(
             this.useUTC ? utc() : '',
             `[${type}]`,
             this.prefix.length > 0 ? `[${this.prefix.join('/')}]` : '',
@@ -26,6 +28,11 @@ export default class Logger {
 
     setPrefix(...p: any[]) {
         this.prefix = p
+        return this
+    }
+
+    setTransport(t: (...args: any[]) => void) {
+        this.transport = t
         return this
     }
 

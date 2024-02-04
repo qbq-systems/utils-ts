@@ -4,6 +4,7 @@ const time_1 = require("./time");
 class Logger {
     constructor() {
         this.prefix = [];
+        this.transport = console.log;
         this.useUTC = true;
     }
     addPrefix(p) {
@@ -14,10 +15,14 @@ class Logger {
         this.process('info', m);
     }
     process(type, m) {
-        console.log(this.useUTC ? (0, time_1.utc)() : '', `[${type}]`, this.prefix.length > 0 ? `[${this.prefix.join('/')}]` : '', m.join(' '));
+        this.transport(this.useUTC ? (0, time_1.utc)() : '', `[${type}]`, this.prefix.length > 0 ? `[${this.prefix.join('/')}]` : '', m.join(' '));
     }
     setPrefix(...p) {
         this.prefix = p;
+        return this;
+    }
+    setTransport(t) {
+        this.transport = t;
         return this;
     }
 }
