@@ -1,11 +1,14 @@
 export default class Logger {
+    private hideT;
+    private hideU;
     private prefix;
     private transport;
-    private useUTC;
     addPrefix(p: string): this;
+    hideType(): Logger;
+    hideUTC(): Logger;
     info(...m: any[]): void;
     private process;
-    setPrefix(...p: any[]): this;
-    setTransport(t: (...args: any[]) => void): this;
+    setPrefix(...p: any[]): Logger;
+    setTransport(t: (...args: any[]) => void): Logger;
 }
 //# sourceMappingURL=Logger.d.ts.map

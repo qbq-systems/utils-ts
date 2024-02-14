@@ -2,14 +2,26 @@ import { utc } from "./time";
 
 export default class Logger {
 
+    private hideT: boolean = false
+
+    private hideU: boolean = false
+
     private prefix: string[] = []
 
     private transport: (...args: any[]) => void = console.log
 
-    private useUTC: boolean = true
-
     addPrefix(p: string) {
         this.prefix.push(p)
+        return this
+    }
+
+    hideType(): Logger {
+        this.hideT = true
+        return this
+    }
+
+    hideUTC(): Logger {
+        this.hideU = true
         return this
     }
 
@@ -19,19 +31,19 @@ export default class Logger {
 
     private process(type: string, m: any[]) {
         this.transport(
-            this.useUTC ? utc() : '',
-            `[${type}]`,
-            this.prefix.length > 0 ? `[${this.prefix.join('/')}]` : '',
+            this.hideU ? '' : utc(),
+            this.hideT ? '' : `[${type}]`,
+            this.prefix.length > 0 ? `[${this.prefix.join('|')}]` : '',
             m.join(' '),
         )
     }
 
-    setPrefix(...p: any[]) {
+    setPrefix(...p: any[]): Logger {
         this.prefix = p
         return this
     }
 
-    setTransport(t: (...args: any[]) => void) {
+    setTransport(t: (...args: any[]) => void): Logger {
         this.transport = t
         return this
     }
