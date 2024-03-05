@@ -1,4 +1,4 @@
-import { utc } from "./time";
+import { currentDateTime, utc } from "./time";
 
 export default class Logger {
 
@@ -7,6 +7,8 @@ export default class Logger {
     private hideU: boolean = false
 
     private prefix: string[] = []
+
+    private prettifyDT: boolean = false
 
     private transport: (...args: any[]) => void = console.log
 
@@ -29,12 +31,23 @@ export default class Logger {
         this.process('info', m)
     }
 
+    prettifyDateTime(): Logger {
+        this.prettifyDT = true
+        return this
+    }
+
     private process(type: string, m: any[]) {
         this.transport(
-            this.hideU ? '' : utc(),
-            this.hideT ? '' : `[${type}]`,
-            this.prefix.length > 0 ? `[${this.prefix.join('|')}]` : '',
-            m.join(' '),
+            ...[
+                this.hideU ? '' : (
+                    this.prettifyDT ? `${currentDateTime()}` : utc()
+                ),
+                this.hideT ? '' : `[${type}]`,
+                this.prefix.length > 0 ? `[${this.prefix.join('|')}]` : '',
+                m.join(' '),
+        ].filter((item: string) => {
+                return item.length > 0
+            })
         )
     }
 
