@@ -6,6 +6,7 @@ class Logger {
         this.hideT = false;
         this.hideU = false;
         this.prefix = [];
+        this.prettifyDT = false;
         this.transport = console.log;
     }
     addPrefix(p) {
@@ -23,8 +24,19 @@ class Logger {
     info(...m) {
         this.process('info', m);
     }
+    prettifyDateTime() {
+        this.prettifyDT = true;
+        return this;
+    }
     process(type, m) {
-        this.transport(this.hideU ? '' : (0, time_1.utc)(), this.hideT ? '' : `[${type}]`, this.prefix.length > 0 ? `[${this.prefix.join('|')}]` : '', m.join(' '));
+        this.transport(...[
+            this.hideU ? '' : (this.prettifyDT ? `${(0, time_1.currentDateTime)()}` : (0, time_1.utc)()),
+            this.hideT ? '' : `[${type}]`,
+            this.prefix.length > 0 ? `[${this.prefix.join('|')}]` : '',
+            m.join(' '),
+        ].filter((item) => {
+            return item.length > 0;
+        }));
     }
     setPrefix(...p) {
         this.prefix = p;
